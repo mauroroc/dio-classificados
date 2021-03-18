@@ -12,8 +12,14 @@
 
   <body>
     <%= flash.notice %>
+    <%= flash.alert %>
     <nav>
-      <%= link_to "Cadastre-se", "/user/new" %>
+    <% if user_signed_in? %>
+      <%= button_to "Sair", sign_out_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Cadastre-se", new_user_path %>
+      <%= link_to "Entrar", new_session_path %>
+    <% end %>      
     </nav>
     <%= yield %>
   </body>
